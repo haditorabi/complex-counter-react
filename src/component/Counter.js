@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from "react";
-export default function Counter({counters, setCounters, obj}) {
-    // console.log(obj);
-    const [counter, setCounter] = useState(obj.value);
-    function increaseVal() {
-        setCounter(counter+1);
-    }
-    function decreaseVal() {
-        setCounter(counter-1)
-    }
+import React, {useEffect} from "react";
+export default function Counter({handleDecrease, handleIncrease, value}) {
     useEffect(() => {
-        setCounters(...counters, );
-//eslint-disable-next-line
-},[counter]);
+        // eslint-disable-next-line array-callback-return
+      }, [value.value]);
     return (
         <div className="btn-group mb-1 border border-info" role="group" aria-label="Basic mixed styles example">
-            <button type="button" className="btn btn-danger" onClick={() => decreaseVal()} disabled={(counter) < 1 ? " =true" : ""}><strong>-</strong></button>
-            <div className="btn btn-default col-8">{counter}</div>
-            <button type="button" className="btn btn-success" onClick={() => increaseVal()}><strong>+</strong></button>
+            <button type="button" className="btn btn-danger" onClick={() => handleDecrease(value)} disabled={(value.value) < 1 ? " =true" : ""}><strong>-</strong></button>
+            <div className="btn btn-default col-8">{value.value}</div>
+            <button type="button" className="btn btn-success" onClick={() => handleIncrease(value)}><strong>+</strong></button>
         </div>
     )
 }
