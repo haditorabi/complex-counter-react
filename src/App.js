@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Counter from "./component/Counter";
-// import TotalCounters from "./component/TotalCounters";
+import TotalCounters from "./component/TotalCounters";
 
 const App = () =>  {
 const initialCounters = [{ id: 1, value: 1},{ id: 2, value: 1}];
@@ -20,12 +20,20 @@ function handleIncrease(counter) {
   counters[index].value = counters[index].value +1;
   setCounters([ ...counters ]);
 };
-console.log(counters);
-// useEffect(() => {
-//   console.log(counters.length);
-//   setTotal(totalCounters);
-//   // eslint-disable-next-line array-callback-return
-// });
+const [total, setTotal] = useState(0);
+
+function totalCounters(counters) {
+  console.log(counters);
+  return counters.reduce((sum, i) => {
+    return sum + i;
+  }, 0);
+}
+
+useEffect(() => {
+  console.log(counters.length);
+  setTotal(totalCounters);
+  // eslint-disable-next-line array-callback-return
+});
   return (
     <div className="container">
       <h1>Counter App</h1>
@@ -34,7 +42,7 @@ console.log(counters);
         {counters.map((i) => 
           <Counter key={Math.random()} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
         )}
-        <
+        <TotalCounters total={total}/>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react";
 
-export default function TotalCounters (props) {
-    const {total} = props;
+export default function TotalCounters ({total}) {
+    // const {total} = props;
     // console.log(props);
 
     return(

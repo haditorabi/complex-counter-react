@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 export default function Counter({handleDecrease, handleIncrease, value}) {
-    console.log(value);
+    // console.log(value);
     // useEffect(() => {
 
     //     // eslint-disable-next-line array-callback-return
