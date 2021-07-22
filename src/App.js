@@ -6,19 +6,19 @@ const App = () =>  {
 const initialCounters = [{ id: 1, value: 1},{ id: 2, value: 1}];
 const [counters, setCounters] = useState(initialCounters);
 function handleDecrease(counter) {
-  console.log(counters);
+  // console.log(counters);
   const countersState = [...counters];
   const index = countersState.indexOf(counter);
   counters[index] = { ...counters[index] };
   counters[index].value = counters[index].value -1;
-  setCounters(counters );
+  setCounters([...counters ]);
 };
 function handleIncrease(counter) {
   const countersState = [...counters];
   const index = countersState.indexOf(counter);
   counters[index] = { ...counters[index] };
-  counters[index] = !counters[index] +1;
-  setCounters(counters );
+  counters[index].value = counters[index].value +1;
+  setCounters([ ...counters ]);
 };
 console.log(counters);
 // useEffect(() => {
@@ -34,6 +34,7 @@ console.log(counters);
         {counters.map((i) => 
           <Counter key={Math.random()} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
         )}
+        <
         </div>
       </div>
     </div>
