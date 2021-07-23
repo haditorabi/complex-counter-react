@@ -5,6 +5,7 @@ import TotalCounters from "./component/TotalCounters";
 const App = () =>  {
 const initialCounters = [{ id: 1, value: 1},{ id: 2, value: 1}];
 const [counters, setCounters] = useState(initialCounters);
+
 function handleDecrease(counter) {
   // console.log(counters);
   const countersState = [...counters];
@@ -22,26 +23,27 @@ function handleIncrease(counter) {
 };
 const [total, setTotal] = useState(0);
 
-function totalCounters(counters) {
-  console.log(counters);
-  return counters.reduce((sum, i) => {
-    return sum + i;
-  }, 0);
-}
+
 
 useEffect(() => {
-  console.log(counters.length);
+  // const totalCounters = console.log(counters.length , "length");
+  function totalCounters () {
+    return counters.reduce((sum, i) => {
+      // console.log(i.value)  
+      return sum + i.value;
+    }, 0);
+  }
   setTotal(totalCounters);
   // eslint-disable-next-line array-callback-return
-});
+},[counters]);
   return (
     <div className="container">
       <h1>Counter App</h1>
       <div className="row">
         <div className="d-flex flex-column col-md-3">
-        {counters.map((i) => 
-          <Counter key={Math.random()} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
-        )}
+        {counters.map((i) => {
+          return <Counter key={Math.random()} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
+        })}
         <TotalCounters total={total}/>
         </div>
       </div>
