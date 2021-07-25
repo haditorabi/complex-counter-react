@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import Counters from "./component/Counters";
 import Counter from "./component/Counter";
 import TotalCounters from "./component/TotalCounters";
 
 const App = () =>  {
-const initialCounters = [{ id: 1, value: 1},{ id: 2, value: 1}, [{ id: 3, value: 2},{ id: 4, value: 2}]];
+const initialCounters = [{ id: 1, value: 1},{ id: 2, value: 1}];
 const [counters, setCounters] = useState(initialCounters);
 
 function handleDecrease(counter) {
@@ -38,11 +37,7 @@ return (
       <div className="row">
         <div className="d-flex flex-column w-100">
         {counters.map((i) => {
-          if(Array.isArray(i)) {
-            return <Counters counters={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
-          } else {
-            return <Counter key={i.id.toString()} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
-          }
+            return <Counter key={i.id} value={i} handleDecrease={handleDecrease} handleIncrease={handleIncrease}/>
         })}
         <TotalCounters key={Math.random()} total={total}/>
         </div>
